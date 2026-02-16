@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmad Ulaya Ibrahim | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <link rel="icon" href="./favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicon/favicon-96x96.png" type="image/png" sizes="96x96">
+    <link rel="apple-touch-icon" href="./favicon/apple-touch-icon.png">
+    <meta name="description" content="Portfolio Website">
+    <meta name="theme-color" content="#0f0f12">
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <nav class="navbar glass">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="./images/profile-photo.webp" alt="Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="tag">PORTFOLIO</span>
+                </div>
+            </div>
+
+            <div class="nav-menu">
+                <div class="nav-backdrop"></div> 
+                <a href="#hero" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#portfolio" class="nav-link">Works</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+    <div class="mobile-nav">
+        <a href="#hero" class="mobile-link active" onclick="closeMenu()">Home</a>
+        <a href="#about" class="mobile-link" onclick="closeMenu()">About</a>
+        <a href="#skills" class="mobile-link" onclick="closeMenu()">Skills</a>
+        <a href="#portfolio" class="mobile-link" onclick="closeMenu()">Works</a>
+        <a href="#experience" class="mobile-link" onclick="closeMenu()">Experience</a>
+        <a href="#contact" class="mobile-link" onclick="closeMenu()">Contact</a>
+     </div>
+
+    <section id="hero" class="hero-section">
+        <div class="hero-container">
+            <div class="hero-badge glass-pill">
+                <span class="status-dot"></span> Available for collaboration • 2026
+            </div>
+            
+            <div class="hero-content">
+                <h1 class="hero-title">Hai, Saya <br><span class="typing-text"></span></h1>
+                <!-- &lt;/&gt; -->
+                <h2 class="hero-role">Computer and Network Engineering</h2>
+                
+                <p class="hero-value">
+                    Saya membangun solusi yang rapi, stabil, dan mudah dipakai: 
+                    Menggabungkan dasar network engineering dengan web development, 
+                    dari perencanaan hingga eksekusi.
+                </p>
+
+                <div class="hero-cta">
+                    <a href="./asset/CV AHMAD ULAYA IBRAHIM.pdf" class="btn btn-primary glass-btn">
+                        <i class="fas fa-download"></i> Download CV
+                    </a>
+                    <a href="#portfolio" class="btn btn-secondary glass-btn">
+                        <i class="fas fa-eye"></i> Lihat Karya
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding">
+        <div class="container">
+            <h2 class="section-heading">About Me</h2>
+            
+            <div class="about-layout">
+                
+                <div class="about-top">
+                    <div class="about-text-content">
+                        <div class="card glass">
+                            <h3>Short Introduction</h3>
+                            <p class="text-justify">
+                                Saya Ahmad Ulaya Ibrahim, siswa SMK Negeri 1 Tanjunganom Nganjuk jurusan TJKT dan akan lulus pada tahun 2026. 
+                                Saya memiliki ketertarikan kuat pada network engineering dan web development, dengan fokus membangun sistem yang rapi, stabil, dan mudah digunakan.
+                                Selama sekolah, saya aktif sebagai pengurus OSIS serta mengikuti berbagai kegiatan ekstrakurikuler, termasuk sebagai ketua Paskibra.
+                                Pengalaman tersebut membentuk kemampuan saya dalam disiplin, komunikasi, dan kepemimpinan.
+                            </p>
+                        </div>
+                        
+                        <div class="about-subgrid">
+                            <div class="card glass">
+                                <h3>Values & Strengths</h3>
+                                <ul class="check-list">
+                                    <li>Disiplin & Tepat Waktu</li>
+                                    <li>Problem Solving Cepat</li>
+                                    <li>Komunikasi Efektif</li>
+                                </ul>
+                            </div>
+                            <div class="card glass">
+                                <h3>Quick Stats</h3>
+                                <div class="stat-item">
+                                    <span class="stat-num">5+</span>
+                                    <span class="stat-desc">Projects Done</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-photo">
+                        <div class="photo-wrapper">
+                            <img src="./images/personal-photo.png" alt="Ahmad Ulaya Ibrahim" class="floating-photo">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-bottom">
+                    <div class="card glass current-status">
+                        <h3>Currently Doing</h3>
+                        <p><i class="fas fa-spinner fa-spin"></i> Mengembangkan Skill Server Administration & Web Modern.</p>
+                        <p><i class="fas fa-spinner fa-spin"></i> Fokus Belajar Ngejar SNBT. 🔥</p>
+                        <p><i class="fas fa-spinner fa-spin"></i> Membaca Beberapa Buku.</p>
+                    </div>
+
+                    <div class="card glass summary-card">
+                        <div class="summary-tags">
+                            <span>Fokus: Network & Web</span>
+                            <span>Lokasi: Nganjuk, ID</span>
+                            <span>Status: Student</span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="tag">Web Development</span>
+                            <span class="tag">Network Engineering</span>
+                            <span class="tag">Server Admin</span>
+                            <span class="tag">Leadership</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section-padding">
+        <div class="container">
+            <h2 class="section-heading">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="card glass skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-code skill-icon"></i>
+                        <h4>Web Development</h4>
+                    </div>
+                    <p class="skill-desc">HTML, CSS, JS, Modern Frameworks</p>
+                    <div class="progress-wrapper">
+                        <div class="progress-info"><span>Advanced</span><span>84%</span></div>
+                        <div class="progress-bar"><div class="fill" style="width: 84%"></div></div>
+                    </div>
+                </div>
+                <div class="card glass skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-network-wired skill-icon"></i>
+                        <h4>Network Engineering</h4>
+                    </div>
+                    <p class="skill-desc">Cisco, Mikrotik, Routing, Switching</p>
+                    <div class="progress-wrapper">
+                        <div class="progress-info"><span>Expert</span><span>90%</span></div>
+                        <div class="progress-bar"><div class="fill" style="width: 90%"></div></div>
+                    </div>
+                </div>
+                <div class="card glass skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-server skill-icon"></i>
+                        <h4>Server Administration</h4>
+                    </div>
+                    <p class="skill-desc">Linux, Windows Server, VPS</p>
+                    <div class="progress-wrapper">
+                        <div class="progress-info"><span>Intermediate</span><span>75%</span></div>
+                        <div class="progress-bar"><div class="fill" style="width: 75%"></div></div>
+                    </div>
+                </div>
+                <div class="card glass skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-user-tie skill-icon"></i>
+                        <h4>IT Consultation</h4>
+                    </div>
+                    <p class="skill-desc">System Planning & Analysis</p>
+                    <div class="progress-wrapper">
+                        <div class="progress-info"><span>Advanced</span><span>80%</span></div>
+                        <div class="progress-bar"><div class="fill" style="width: 80%"></div></div>
+                    </div>
+                </div>
+                <div class="card glass skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-users skill-icon"></i>
+                        <h4>Leadership</h4>
+                    </div>
+                    <p class="skill-desc">Team Management, Project Lead</p>
+                    <div class="progress-wrapper">
+                        <div class="progress-info"><span>Advanced</span><span>85%</span></div>
+                        <div class="progress-bar"><div class="fill" style="width: 85%"></div></div>
+                    </div>
+                </div>
+                <div class="card glass skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-wrench skill-icon"></i>
+                        <h4>System Troubleshooting</h4>
+                    </div>
+                    <p class="skill-desc">Hardware & Software Repair</p>
+                    <div class="progress-wrapper">
+                        <div class="progress-info"><span>Advanced</span><span>87%</span></div>
+                        <div class="progress-bar"><div class="fill" style="width: 87%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="section-padding">
+        <div class="container">
+            <h2 class="section-heading">Featured Projects</h2>
+            <div class="portfolio-grid">
+                <div class="card glass project-card">
+                    <div class="project-thumb">
+                        <img src="./images/web-portfolio.png" alt="Web Portfolio">
+                    </div>
+                    <div class="project-info">
+                        <a href="https://www.ulayaportfolio.my.id" target="_blank" rel="noopener noreferrer" class="project-link">
+                            <h3>Personal Web Portfolio</h3>
+                        </a>
+                        <p>Website portofolio modern dengan tema Liquid Glassmorphism.</p>
+                    </div>
+                </div>
+                <div class="card glass project-card">
+                    <div class="project-thumb">
+                        <img src="./images/web-dictio.png" alt="PKL Project">
+                    </div>
+                    <div class="project-info">
+                        <h3>Dictionary English Web</h3>
+                        <p>Kamus untuk menemukan arti kata berbahasa inggris yang praktis.</p>
+                    </div>
+                </div>
+                <div class="card glass project-card">
+                    <div class="project-thumb">
+                        <img src="./images/web-kalkulator.png" alt="Arduino Project">
+                    </div>
+                    <div class="project-info">
+                        <a href="https://ur-calculator.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link">
+                            <h3>Simple Calculator Web</h3>
+                        </a>
+                        <p>Kalkulator sederhana dengan antarmuka interaktif berbasis website.</p>
+                    </div>
+                </div>
+            </div>
+             
+            <h3 class="sub-heading">Certifications & Achievements</h3>
+            <div class="cert-grid">
+                <div class="glass cert-card">
+                    <img src="./images/sertif-paski.jpg" alt="Mikrotik MTCNA" class="cert-image">
+                    <div class="cert-content">
+                        <i class="fas fa-microchip"></i>
+                        <span>Organization Leadership</span>
+                    </div>
+                </div>
+                <div class="glass cert-card">
+                    <img src="./images/sertif-ldks.jpg" alt="Dicoding Web Basics" class="cert-image">
+                    <div class="cert-content">
+                        <i class="fas fa-laptop-code"></i>
+                        <span>Latihan Dasar Kepemimpinan Siswa 2023</span>
+                    </div>
+                </div>
+                <div class="glass cert-card">
+                    <img src="./images/sertif-ldks-2.jpg" alt="Juara 1 Paskibra" class="cert-image">
+                    <div class="cert-content">
+                        <i class="fas fa-award"></i>
+                        <span>Latihan Dasar Kepemimpinan Siswa 2024</span>
+                    </div>
+                </div>
+                <div class="glass cert-card">
+                    <img src="./images/sertif-word.jpg" alt="Cisco Networking" class="cert-image">
+                    <div class="cert-content">
+                        <i class="fas fa-server"></i>
+                        <span>Best 1 Word Competition</span>
+                    </div>
+                </div>
+                <div class="glass cert-card">
+                    <img src="./images/sertifikat-microsoft-word.webp" alt="Best Leadership OSIS" class="cert-image">
+                    <div class="cert-content">
+                        <i class="fas fa-satellite-dish"></i>
+                        <span>Completed Basic Word Course</span>
+                    </div>
+                </div>
+                <div class="glass cert-card">
+                    <img src="./images/sertif-pkl.jpg" alt="PKL Excellence Award" class="cert-image">
+                    <div class="cert-content">
+                        <i class="fas fa-link"></i>
+                        <span>PKL Excellence Award</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section-padding">
+        <div class="container">
+            <h2 class="section-heading">Experience Journey</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2014 - 2020</div>
+                    <div class="card glass timeline-content">
+                        <h3>MI Negeri 11 Nganjuk</h3>
+                        <p class="role">Pendidikan Sekolah Dasar</p>
+                        <p>Membangun fondasi pendidikan dasar yang kuat.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2020 - 2023</div>
+                    <div class="card glass timeline-content">
+                        <h3>SMP Negeri 1 Tanjunganom</h3>
+                        <p class="role">Pendidikan Menengah Pertama</p>
+                        <p>Mulai aktif dalam akademik dan menemukan minat pada teknologi.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2023 - 2026</div>
+                    <div class="card glass timeline-content">
+                        <h3>SMK Negeri 1 Tanjunganom Nganjuk</h3>
+                        <p class="role">Siswa Jurusan TJKT</p>
+                        <p>Mendalami bidang Computer and Network Engineering, serta fokus pada Web Development.</p>
+                    </div>
+
+                    <div class="sub-timeline">
+                        
+                        <div class="timeline-item sub-item">
+                            <div class="timeline-dot sub-dot"></div>
+                            <div class="timeline-date">2023 - 2025</div>
+                            <div class="card glass timeline-content">
+                                <h3>Active Organization Member</h3>
+                                <p class="role">OSIS & Paskibra Member</p>
+                                <p>Aktif dalam organisasi OSIS periode 2024/2025 dan berbagai ekstrakurikuler (Paskibra, VIPHO, ESA, KIT). Mengikuti LDKS untuk pembentukan karakter.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item sub-item">
+                            <div class="timeline-dot sub-dot"></div>
+                            <div class="timeline-date">2024 - 2025</div>
+                            <div class="card glass timeline-content">
+                                <h3>Ketua Umum Paskibra</h3>
+                                <p class="role">Leadership Role</p>
+                                <p>Memimpin ekstrakurikuler dalam berbagai event sekolah dan kompetisi. Bertanggung jawab atas kedisiplinan dan manajemen ekstrakurikuler.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item sub-item">
+                            <div class="timeline-dot sub-dot"></div>
+                            <div class="timeline-date">15 Jul - 15 Des 2025</div>
+                            <div class="card glass timeline-content">
+                                <h3>Praktik Kerja Lapangan (PKL)</h3>
+                                <p class="role">Network Technician Intern</p>
+                                <p>Pengalaman kerja nyata selama 5 bulan. Melakukan troubleshooting, instalasi jaringan, dan maintenance server dengan performa sangat baik.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <h2 class="section-heading">Get In Touch</h2>
+            <div class="contact-wrapper">
+                
+                <div class="card glass contact-left">
+                    <h3>Let's Talk</h3>
+                    <p>Temukan saya di media sosial atau platform profesional lainnya.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/qwertqbg" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+                        <a href="https://t.me/thtistrue" target="_blank" class="social-btn"><i class="fab fa-telegram"></i></a>
+                        <a href="https://github.com/AulayaI" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/ahmad-ulaya-ibrahim-aa88a93a5" target="_blank" class="social-btn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.youtube.com/@Viipher" target="_blank" class="social-btn"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="card glass contact-right">
+                    <h3>Send a Message</h3>
+                    <form id="waForm">
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <input type="text" id="name" placeholder="Nama Kamu" class="glass-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Topik</label>
+                            <input type="text" id="topic" placeholder="Topik Diskusi" class="glass-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Pesan</label>
+                            <textarea id="message" rows="4" placeholder="Isi Pesan" class="glass-input">Saya disini berminat bekerja sama dengan Anda!</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary glass-btn w-100">
+                            <i class="fab fa-whatsapp"></i> Kirim ke WhatsApp
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="glass-footer">
+        <p>&copy; 2026 AhmadUlayaIbrahim. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <script>
+        // Inisialisasi ScrollReveal dengan efek 'easing' yang mewah
+        const sr = ScrollReveal({
+            distance: '60px', // Jarak elemen bergeser
+            duration: 2500,   // Durasi animasi (2.5 detik untuk kesan natural)
+            delay: 300,       // Jeda sebelum animasi dimulai
+            reset: false,     // Ubah ke 'true' jika ingin animasi diulang setiap kali scroll naik-turun
+            easing: 'cubic-bezier(0.25, 0.8, 0.25, 1)' // Kurva animasi super smooth ala Apple/modern web
+        });
+
+        // --- Menganimasikan Section Tanpa Mengubah HTML Asli ---
+
+        // Hero Section
+        sr.reveal('#hero .hero-badge', { delay: 200, origin: 'top', distance: '30px' });
+        sr.reveal('#hero .hero-title', { delay: 400, origin: 'bottom' });
+        sr.reveal('#hero .hero-role', { delay: 500, origin: 'bottom' });
+        sr.reveal('#hero .hero-value', { delay: 600, origin: 'bottom' });
+        sr.reveal('#hero .hero-cta', { delay: 700, origin: 'bottom' });
+
+        // Global Section Headings
+        sr.reveal('.section-heading', { delay: 300, origin: 'bottom', distance: '40px' });
+        sr.reveal('.sub-heading', { delay: 300, origin: 'bottom', distance: '40px' });
+
+        // About Section
+        sr.reveal('.about-text-content', { delay: 400, origin: 'left' });
+        sr.reveal('.about-photo', { delay: 500, origin: 'right' });
+        sr.reveal('.about-bottom .current-status', { delay: 400, origin: 'bottom' });
+        sr.reveal('.about-bottom .summary-card', { delay: 600, origin: 'bottom' });
+
+        // Skills Section (Muncul berurutan satu per satu)
+        sr.reveal('.skill-card', { delay: 300, origin: 'bottom', interval: 150 });
+
+        // Portfolio & Certificate Section (Berurutan)
+        sr.reveal('.project-card', { delay: 300, origin: 'bottom', interval: 200 });
+        sr.reveal('.cert-card', { delay: 300, origin: 'bottom', interval: 150 });
+
+        // Experience Timeline Section
+        sr.reveal('.timeline-item', { delay: 300, origin: 'left', interval: 200 });
+
+        // Contact Section
+        sr.reveal('.contact-left', { delay: 400, origin: 'left' });
+        sr.reveal('.contact-right', { delay: 500, origin: 'right' });
+    </script>
+</body>
+</html>

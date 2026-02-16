@@ -1,0 +1,534 @@
+/* === HILANGKAN BLOCK BIRU SAAT DIKLIK DI MOBILE === */
+* {
+    -webkit-tap-highlight-color: transparent !important; /* Menghilangkan highlight biru di iOS */
+    -webkit-touch-callout: none !important; /* Mencegah menu konteks muncul saat tap lama */
+    -webkit-user-select: none !important; /* Mencegah seleksi teks */
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+
+/* Tidak menghilangkan focus untuk accessibility */
+*:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+/* --- RESET & VARIABLES --- */
+:root {
+    --bg-color: #050b14; /* Deep dark blue, almost black */
+    --glass-bg: rgba(255, 255, 255, 0.03); /* Lebih bening/clear */
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #00f0ff; /* Cyberpunk Neon Cyan */
+    --accent-glow: rgba(0, 240, 255, 0.5);
+    --radius: 20px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+    /* Grid Teknologi Modern sebagai Background Default */
+    background-image: 
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Latar Belakang Interaktif */
+#particles-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -1;
+}
+
+/* --- GLASSMORPHISM UTILITIES --- */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px); /* Blur lebih padat tapi warnanya clear/bening */
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.glass-pill {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    padding: 8px 20px;
+}
+
+.glass-btn {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    color: white;
+    transition: 0.3s;
+}
+.glass-btn:hover {
+    background: white; color: var(--bg-color); transform: translateY(-2px);
+    /* box-shadow: 0 0 15px var(--accent-glow); */
+}
+
+/* --- LAYOUT UTILITIES --- */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.section-padding { padding: 80px 0; }
+.section-heading { font-size: 2.5rem; margin-bottom: 50px; text-align: center; font-weight: 700; letter-spacing: -1px; }
+.sub-heading { text-align: center; margin-bottom: 30px; margin-top: 50px; font-size: 1.8rem; }
+.text-justify { text-align: justify; }
+
+/* --- NAVBAR (Simetris & Dropdown Fix) --- */
+.navbar{
+    position: fixed;
+    top:20px;
+    will-change: transform;
+    left:50%;
+    right:auto !important;   /* ← ini kunci fix refresh bug */
+    transform:translateX(-50%);
+
+    width:min(1200px, calc(100% - 40px));
+    padding:8px 15px;
+
+    border-radius:50px;
+    overflow:hidden;
+
+    z-index:1000;
+}
+
+
+.navbar.glass{
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+
+.nav-container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%; /* Pastikan kontainer memenuhi navbar */
+}
+
+/* --- NAV MENU & BACKDROP (Presisi) --- */
+.nav-menu { 
+    display: flex; 
+    gap: 5px; 
+    position: relative; 
+    background: rgba(0,0,0,0.2); 
+    padding: 5px; 
+    border-radius: 40px; 
+}
+
+.nav-backdrop {
+    position: absolute; 
+    top: 0 !important;   /* Paksa ke 0 */
+    left: 0 !important;  /* Paksa ke 0 */
+    background: rgba(255, 255, 255, 0.08); 
+    border-radius: 30px;
+    z-index: 1; 
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    opacity: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar.scrolled {
+    /* Menghilangkan blur warna gelap, diganti pure blur kaca */
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-img { 
+    width: 45px; height: 45px; 
+    border-radius: 50%; 
+    object-fit: cover; /* FIX: Foto anti gepeng */
+    border: 2px solid var(--glass-border);
+}
+.logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.logo-text .tag { font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; color: var(--accent); }
+
+
+.nav-link {
+    text-decoration: none; color: var(--text-muted); padding: 8px 20px;
+    border-radius: 30px; font-size: 0.9rem; font-weight: 500;
+    position: relative; z-index: 2; transition: color 0.3s;
+}
+.nav-link:hover, .nav-link.active { color: white; }
+
+
+
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; padding: 5px; }
+.bar { width: 25px; height: 3px; background: white; border-radius: 2px; transition: 0.3s; }
+
+/* ==========================================================
+   100% FIX: LIQUID GLASSMORPHISM MOBILE MENU
+   ========================================================== */
+/* --- FIX: ATUR Z-INDEX MOBILE MENU AGAR BERADA DIBAWAH NAVBAR UTAMA --- */
+.mobile-nav {
+    position: fixed;
+    top: 95px; 
+    left: 5%;
+    width: 90%;
+    z-index: 500 !important; /* 👉 TURUNKAN DIBAWAH NAVBAR (1000) */
+    
+    /* SAMAKAN 100% DENGAN NAVBAR UTAMA */
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    /* Animasi Muncul */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.mobile-nav.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto; /* Izinkan interaksi saat muncul */
+}
+/* ==========================================================
+   MOBILE LINKS — TANPA BACKDROP-FILTER (HINDARI KONFLIK)
+   ========================================================== */
+.mobile-link {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 14px 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    background: transparent;
+    display: block; /* Pastikan link bisa diklik */
+}
+
+.mobile-link:hover,
+.mobile-link.active {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Hapus baris glow cyan */
+}
+
+/* --- HERO --- */
+.hero-section { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; }
+.hero-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; margin-bottom: 20px; }
+.status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 8px var(--accent); }
+.hero-title { font-size: 4rem; line-height: 1.1; font-weight: 800; margin-bottom: 10px; }
+.hero-role { font-size: 1.5rem; color: var(--accent); margin-bottom: 20px; font-weight: 500; }
+.hero-value { max-width: 600px; color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem; }
+.hero-cta { display: flex; gap: 15px; }
+.btn { padding: 12px 28px; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: none; }
+.btn-primary { background: white; color: var(--bg-color); }
+.btn-primary:hover { background: #e2e8f0; }
+
+/* --- ABOUT (Restructured) --- */
+.about-layout { display: flex; flex-direction: column; gap: 30px; }
+.about-top { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; }
+.about-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+
+.card { padding: 25px; transition: transform 0.3s; }
+.card:hover { transform: translateY(-5px); }
+.card h3 { margin-bottom: 15px; font-size: 1.2rem; color: var(--accent); }
+
+.about-text-content { display: flex; flex-direction: column; gap: 30px; }
+.about-subgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+
+.check-list { list-style: none; }
+.check-list li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+.check-list li::before { content: '✓'; color: var(--accent); position: absolute; left: 0; }
+.stat-item { display: flex; flex-direction: column; align-items: center; }
+.stat-num { font-size: 2.5rem; font-weight: 700; color: white; }
+.summary-tags { display: flex; flex-direction: column; gap: 5px; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; }
+
+.about-photo { height: 100%; min-height: 400px; }
+.photo-wrapper { position: relative; width: 100%; height: 100%; }
+.floating-photo {
+    width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius);
+    position: absolute; z-index: 2; animation: floatImg 6s infinite ease-in-out;
+    border: 0px solid var(--glass-border);
+}
+@keyframes floatImg { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+/* --- SKILLS & PORTFOLIO --- */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+.skill-card { display: flex; flex-direction: column; justify-content: space-between; }
+.skill-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.skill-icon { font-size: 1.5rem; color: var(--accent); }
+.progress-wrapper { margin-top: 15px; }
+.progress-info { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 5px; }
+.progress-bar { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+.progress-bar .fill { height: 100%; background: var(--accent); border-radius: 3px; box-shadow: 0 0 10px var(--accent); }
+
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px; }
+.project-card { padding: 0; overflow: hidden; }
+.project-thumb img { width: 100%; height: 230px; object-fit: cover; transition: 0.5s; }
+.project-card:hover .project-thumb img { transform: scale(1.05); }
+.project-info { padding: 10px; }
+
+.cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.cert-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.cert-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+.cert-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    flex-grow: 1;
+    justify-content: center;
+}
+.cert-content i {
+    font-size: 1.8rem;
+    color: var(--accent);
+}
+.cert-content span {
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+}
+.cert-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 32px rgba(0, 240, 255, 0.2);
+}
+.cert-card:hover .cert-image {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .cert-image {
+        max-height: auto;
+        border-radius: 6px 6px 0 0;
+    }
+    .project-info {
+        padding: 10px; /* Lebih kecil di HP */
+    }
+     .nav-menu{
+     display:none;
+  }
+    
+}
+/* --- EXPERIENCE --- */
+/* --- NESTED TIMELINE (SUB-TIMELINE SMKN 1) --- */
+.sub-timeline {
+    margin-top: 20px;
+    margin-left: 20px; /* Jarak garis anak dari garis utama */
+    padding-left: 20px; /* Jarak tulisan dari garis anak */
+    border-left: 2px dashed rgba(0, 240, 255, 0.4); /* Garis vertikal anak putus-putus */
+    position: relative;
+}
+
+/* Garis cabang/belokan (L-shape) menyambung ke garis utama */
+.sub-timeline::before {
+    content: '';
+    position: absolute;
+    top: -25px; /* Mulai dari bawah box SMKN 1 */
+    left: -50px; /* Menarik garis ke garis utama (-20px margin + -30px padding dari timeline utama) */
+    width: 50px;
+    height: 45px;
+    border-bottom: 2px dashed rgba(0, 240, 255, 0.4);
+    border-radius: 0 0 0 15px; /* Efek siku melengkung layaknya sirkuit */
+    z-index: -1;
+}
+
+/* Jarak antar card di dalam sub-timeline */
+.timeline-item.sub-item {
+    margin-bottom: 30px;
+}
+.timeline-item.sub-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Desain dot (titik) untuk sub-timeline: Dibuat lebih kecil & berlubang di tengah */
+.timeline-dot.sub-dot {
+    width: 10px;
+    height: 10px;
+    left: -25px; /* Pas posisinya di atas garis dashed anak */
+    top: 24px;
+    background: var(--bg-color); /* Berlubang */
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 30px; }
+.timeline::before { content: ''; position: absolute; left: 0; top: 0; width: 2px; height: 100%; background: rgba(255,255,255,0.1); }
+.timeline-item { position: relative; margin-bottom: 40px; }
+.timeline-dot {
+    position: absolute; left: -35px; top: 20px; width: 12px; height: 12px;
+    background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent);
+}
+.timeline-date { font-size: 0.9rem; color: var(--accent); margin-bottom: 5px; font-weight: 600; }
+.timeline-content .role { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px; font-style: italic; }
+
+/* --- CONTACT --- */
+.contact-wrapper { display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px; }
+.social-links { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+.social-btn {
+    width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.1); color: white; text-decoration: none; transition: 0.3s;
+}
+.social-btn:hover { background: var(--accent); transform: scale(1.1); color: var(--bg-color); }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: var(--text-muted); }
+.glass-input {
+    width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1);
+    padding: 12px; border-radius: 12px; color: white; outline: none; transition: 0.3s;
+}
+.glass-input:focus { border-color: var(--accent); background: rgba(0,0,0,0.4); }
+
+/* --- FOOTER --- */
+.glass-footer { text-align: center; padding: 30px; margin-top: 50px; font-size: 0.9rem; color: var(--text-muted); border-top: 1px solid var(--glass-border); }
+
+/* --- RESPONSIVE (HP) --- */
+@media (max-width: 768px) {
+    .nav-menu { display: none; }
+    .hamburger { display: flex; }
+    
+    /* CENTERING PROJECT INFO DI MOBILE */
+    .project-info {
+        text-align: center;
+    }
+    
+    .project-info h3 {
+        text-align: center;
+    }
+    
+    .project-info p {
+        text-align: center;
+    }
+
+    /* Ukuran Teks HP diperkecil agar tidak turun kebawah */
+    .hero-title { font-size: 2.2rem; }
+    .hero-role { font-size: 1.2rem; }
+    
+    /* Standarisasi Gap & Margin Mobile (Konsisten Simetris) */
+    .about-layout, .about-text-content, .about-subgrid, .contact-wrapper { gap: 20px; }
+    .card { padding: 20px; margin-bottom: 0; }
+    
+    /* Foto About Me di paling atas untuk HP */
+    .about-top { display: flex; flex-direction: column-reverse; gap: 20px; }
+    .about-bottom { grid-template-columns: 1fr; gap: 20px; }
+    .about-photo { min-height: 350px; }
+    .floating-photo { position: relative; } /* Fix absolute pos in mobile */
+
+    /* Certification Card jejer 2 di HP agar tidak gepeng/kepotong */
+    .cert-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .cert-image { height: 120px; }
+    .cert-content { padding: 0.8rem; }
+    .cert-content i { font-size: 1.5rem; }
+    .cert-content span { font-size: 0.85rem; }
+
+    /* Hapus .contact-wrapper dari baris ini */
+    .about-grid, .about-subgrid { grid-template-columns: 1fr; }
+    
+    /* Tambahkan pengaturan khusus untuk Contact Wrapper di mobile */
+    .contact-wrapper { 
+        display: flex; 
+        flex-direction: column-reverse; /* Ajaib! Ini yang akan membalik urutan (Kanan jadi Atas, Kiri jadi Bawah) */
+        gap: 30px; 
+    }
+
+    /* Responsivitas Sub-Timeline untuk Mobile */
+    .sub-timeline {
+        margin-left: 10px;
+        padding-left: 15px;
+    }
+    .sub-timeline::before {
+        left: -40px; /* Menyesuaikan garis belokan */
+        width: 40px;
+    }
+    .timeline-dot.sub-dot {
+        left: -20px; /* Menyesuaikan posisi titik */
+    }
+}
+
+/* Transformasi ke X yang Sempurna */
+.hamburger.is-active .bar:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+.hamburger.is-active .bar:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+.hamburger.is-active .bar:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+
+/* ========================================
+   PROJECT LINK - Judul Clickable dengan Icon
+   ======================================== */
+.project-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.project-link:hover {
+    color: var(--accent);
+}
+
+.project-link h3 {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    transition: all 0.3s ease;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.project-link:hover h3 {
+    color: var(--accent);
+}
+
+.project-link::after {
+    content: '↗';
+    margin-left: 8px;
+    font-size: 0.9em;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.project-link:hover::after {
+    opacity: 1;
+}
