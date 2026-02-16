@@ -136,7 +136,7 @@ if (hamburger && mobileNav) {
             const name = document.getElementById('name').value;
             const topic = document.getElementById('topic').value;
             const message = document.getElementById('message').value;
-            const finalMsg = `Halo Ahmad Ulaya, saya ${name}. Ingin mendiskusikan tentang${topic}.\n\n ${message}`;
+            const finalMsg = `Halo Ahmad Ulaya, saya ${name}. Ingin mendiskusikan tentang ${topic}.\n\n ${message}`;
             window.open(`https://wa.me/6281259204220?text=${encodeURIComponent(finalMsg)}`, '_blank');
         });
     }
@@ -176,4 +176,5 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.opacity = '1';
         }, 100);
     });
+
 });
